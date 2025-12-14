@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build artifacts (optional - include if you want to distribute ready-to-use)
+# build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Package manager locks (optional)
+# package-lock.json

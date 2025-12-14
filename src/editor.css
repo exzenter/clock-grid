@@ -1,0 +1,22 @@
+/**
+ * Editor styles for Clock Grid block
+ */
+
+.clock-grid-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.clock-grid-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Color picker styling */
+.clock-grid-color-control .components-color-picker {
+    width: 100%;
+}

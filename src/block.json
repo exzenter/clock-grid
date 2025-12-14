@@ -1,0 +1,89 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "clock-grid/clock-grid",
+    "version": "1.0.0",
+    "title": "Clock Grid",
+    "category": "widgets",
+    "icon": "clock",
+    "description": "An interactive canvas animation with a grid of clocks that follow mouse/touch movement.",
+    "keywords": ["clock", "animation", "canvas", "grid", "mouse", "interactive"],
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"]
+    },
+    "textdomain": "clock-grid",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "attributes": {
+        "faceColor": {
+            "type": "string",
+            "default": "rgba(255, 255, 255, 0.2)"
+        },
+        "ringColor": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "minuteHandColor": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "hourHandColor": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "gap": {
+            "type": "number",
+            "default": 4
+        },
+        "maxHeight": {
+            "type": "number",
+            "default": 610
+        },
+        "containerPadding": {
+            "type": "number",
+            "default": 0
+        },
+        "aspectRatioWidth": {
+            "type": "number",
+            "default": 1
+        },
+        "aspectRatioHeight": {
+            "type": "number",
+            "default": 1
+        },
+        "rotationSpeed": {
+            "type": "number",
+            "default": 400
+        },
+        "sizeDesktop": {
+            "type": "number",
+            "default": 85
+        },
+        "sizeTablet": {
+            "type": "number",
+            "default": 60
+        },
+        "sizeTabletSmall": {
+            "type": "number",
+            "default": 50
+        },
+        "sizeMobile": {
+            "type": "number",
+            "default": 30
+        },
+        "breakpointDesktop": {
+            "type": "number",
+            "default": 799
+        },
+        "breakpointTablet": {
+            "type": "number",
+            "default": 768
+        },
+        "breakpointMobile": {
+            "type": "number",
+            "default": 650
+        }
+    }
+}
