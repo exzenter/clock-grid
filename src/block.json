@@ -2,15 +2,48 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
     "name": "clock-grid/clock-grid",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Clock Grid",
     "category": "widgets",
     "icon": "clock",
     "description": "An interactive canvas animation with a grid of clocks that follow mouse/touch movement.",
-    "keywords": ["clock", "animation", "canvas", "grid", "mouse", "interactive"],
+    "keywords": [
+        "clock",
+        "animation",
+        "canvas",
+        "grid",
+        "mouse",
+        "interactive"
+    ],
     "supports": {
         "html": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ],
+        "layout": {
+            "default": {
+                "type": "flex",
+                "justifyContent": "center",
+                "flexWrap": "nowrap"
+            }
+        },
+        "spacing": {
+            "margin": true,
+            "padding": true
+        },
+        "dimensions": {
+            "minHeight": true
+        },
+        "position": {
+            "sticky": true
+        },
+        "__experimentalBorder": {
+            "color": true,
+            "radius": true,
+            "style": true,
+            "width": true
+        }
     },
     "textdomain": "clock-grid",
     "editorScript": "file:./index.js",

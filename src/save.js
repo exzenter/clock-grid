@@ -27,10 +27,15 @@ export default function save({ attributes }) {
         breakpointMobile,
     } = attributes;
 
+    // Calculate width based on maxHeight and aspect ratio
+    const calculatedWidth = maxHeight * (aspectRatioWidth / aspectRatioHeight);
+
     const blockProps = useBlockProps.save({
         className: 'clock-grid-container',
         style: {
-            maxHeight: `${maxHeight}px`,
+            width: `${calculatedWidth}px`,
+            height: `${maxHeight}px`,
+            maxWidth: '100%',
             padding: `${containerPadding}px`,
             aspectRatio: `${aspectRatioWidth} / ${aspectRatioHeight}`,
         },

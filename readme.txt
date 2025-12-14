@@ -3,7 +3,7 @@ Contributors: exzent.de
 Tags: block, animation, clock, canvas, interactive
 Requires at least: 6.0
 Tested up to: 6.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,6 +40,13 @@ Select the Clock Grid block in the editor and use the "Colors" panel in the bloc
 Use the "Responsive Clock Sizes" panel to set different clock sizes for desktop, tablet, and mobile. Adjust the breakpoints in the "Breakpoints" panel if needed.
 
 == Changelog ==
+
+= 1.0.1 =
+* Improved editor styling - clocks now display at correct size matching frontend
+* Color pickers now use compact dropdown popouts instead of inline pickers
+* Added block supports for alignment, spacing (margin/padding), dimensions, position, and border
+* Fixed aspect ratio functionality with proper width/height calculation
+* Enhanced color preview in settings panel
 
 = 1.0.0 =
 * Initial release

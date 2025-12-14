@@ -1,6 +1,6 @@
 {
     "name": "clock-grid",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "An interactive Gutenberg block displaying a canvas animation with a grid of clocks that follow mouse/touch movement.",
     "author": "Clock Grid",
     "license": "GPL-2.0-or-later",

@@ -8,25 +8,71 @@ import {
     RangeControl,
     __experimentalUnitControl as UnitControl,
     ColorPicker,
+    Dropdown,
+    Button,
     __experimentalHStack as HStack,
     __experimentalVStack as VStack,
     __experimentalText as Text,
     BaseControl,
+    Flex,
+    FlexItem,
 } from '@wordpress/components';
 import { useEffect, useRef, useCallback } from '@wordpress/element';
 
 /**
- * Color Control Component
+ * Color Control Component with Dropdown
  */
 const ColorControl = ({ label, value, onChange }) => {
     return (
-        <BaseControl label={label} __nextHasNoMarginBottom>
-            <ColorPicker
-                color={value}
-                onChange={onChange}
-                enableAlpha={true}
-            />
-        </BaseControl>
+        <Flex align="center" justify="space-between" style={{ marginBottom: '8px' }}>
+            <FlexItem>
+                <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: '500' }}>
+                    {label}
+                </span>
+            </FlexItem>
+            <FlexItem>
+                <Dropdown
+                    className="clock-grid-color-dropdown"
+                    contentClassName="clock-grid-color-popover"
+                    popoverProps={{ placement: 'left-start' }}
+                    renderToggle={({ isOpen, onToggle }) => (
+                        <Button
+                            onClick={onToggle}
+                            aria-expanded={isOpen}
+                            className="clock-grid-color-button"
+                            style={{
+                                padding: '0',
+                                minWidth: '36px',
+                                height: '24px',
+                                border: '1px solid #949494',
+                                borderRadius: '4px',
+                                overflow: 'hidden',
+                                background: 'transparent',
+                            }}
+                        >
+                            <span
+                                style={{
+                                    display: 'block',
+                                    width: '100%',
+                                    height: '100%',
+                                    background: value,
+                                    borderRadius: '3px',
+                                }}
+                            />
+                        </Button>
+                    )}
+                    renderContent={() => (
+                        <div style={{ padding: '16px' }}>
+                            <ColorPicker
+                                color={value}
+                                onChange={onChange}
+                                enableAlpha={true}
+                            />
+                        </div>
+                    )}
+                />
+            </FlexItem>
+        </Flex>
     );
 };
 
@@ -61,21 +107,27 @@ export default function Edit({ attributes, setAttributes }) {
     const isAnimatingRef = useRef(false);
     const lastFrameTimeRef = useRef(performance.now());
 
+    // Calculate width based on maxHeight and aspect ratio
+    const calculatedWidth = maxHeight * (aspectRatioWidth / aspectRatioHeight);
+
     const blockProps = useBlockProps({
         ref: containerRef,
         className: 'clock-grid-container',
         style: {
-            maxHeight: `${maxHeight}px`,
+            width: `${calculatedWidth}px`,
+            height: `${maxHeight}px`,
+            maxWidth: '100%',
             padding: `${containerPadding}px`,
             aspectRatio: `${aspectRatioWidth} / ${aspectRatioHeight}`,
         },
     });
 
-    // Get clock size based on container width
-    const getClockSize = useCallback((containerWidth) => {
-        if (containerWidth <= breakpointMobile) return sizeMobile;
-        if (containerWidth <= breakpointTablet) return sizeTabletSmall;
-        if (containerWidth <= breakpointDesktop) return sizeTablet;
+    // Get clock size based on window width (matching frontend behavior)
+    const getClockSize = useCallback(() => {
+        const width = window.innerWidth;
+        if (width <= breakpointMobile) return sizeMobile;
+        if (width <= breakpointTablet) return sizeTabletSmall;
+        if (width <= breakpointDesktop) return sizeTablet;
         return sizeDesktop;
     }, [sizeDesktop, sizeTablet, sizeTabletSmall, sizeMobile, breakpointDesktop, breakpointTablet, breakpointMobile]);
 
@@ -90,7 +142,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         const ctx = canvas.getContext('2d');
         const rect = container.getBoundingClientRect();
-        const clockSize = getClockSize(rect.width);
+        const clockSize = getClockSize();
 
         ctx.clearRect(0, 0, rect.width, rect.height);
 
@@ -200,7 +252,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         const rect = container.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
-        const clockSize = getClockSize(rect.width);
+        const clockSize = getClockSize();
 
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;

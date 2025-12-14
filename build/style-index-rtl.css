@@ -1,1 +1,1 @@
-.clock-grid-container{box-sizing:border-box;display:flex;height:100%;width:100%}.clock-grid-canvas{display:block;height:100%;width:100%}
+.clock-grid-container{box-sizing:border-box;display:block;position:relative}.clock-grid-canvas{display:block;height:100%;right:0;position:absolute;top:0;width:100%}

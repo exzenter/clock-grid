@@ -4,7 +4,7 @@
  * Description:       A Gutenberg block displaying an interactive canvas animation with a grid of clocks that follow mouse/touch movement.
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Exzent.de 
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'CLOCK_GRID_VERSION', '1.0.0' );
+define( 'CLOCK_GRID_VERSION', '1.0.1' );
 define( 'CLOCK_GRID_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CLOCK_GRID_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -94,9 +94,13 @@ function clock_grid_render_callback( $attributes, $content ) {
         intval( $atts['breakpointMobile'] )
     );
 
+    // Calculate width based on maxHeight and aspect ratio
+    $calculated_width = intval( $atts['maxHeight'] ) * ( intval( $atts['aspectRatioWidth'] ) / intval( $atts['aspectRatioHeight'] ) );
+
     // Build inline styles
     $style = sprintf(
-        'max-height: %dpx; padding: %dpx; aspect-ratio: %d / %d;',
+        'width: %dpx; height: %dpx; max-width: 100%%; padding: %dpx; aspect-ratio: %d / %d;',
+        intval( $calculated_width ),
         intval( $atts['maxHeight'] ),
         intval( $atts['containerPadding'] ),
         intval( $atts['aspectRatioWidth'] ),
